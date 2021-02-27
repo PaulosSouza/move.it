@@ -1,5 +1,6 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { CountdownContext } from '../contexts/CountdownContext';
+import { FaCheckCircle } from 'react-icons/fa';
 import styles from '../styles/components/Countdown.module.css';
 
 export default function Countdown() {
@@ -11,10 +12,12 @@ export default function Countdown() {
     startCountdown,
     resetCountdown
   } = useContext(CountdownContext);
-  
+
   const [minuteLeft, minuteRight] = String(minutes).padStart(2, '0').split('');
   const [secondLeft, secondRight] = String(seconds).padStart(2, '0').split('');
-  
+
+  console.log(minuteLeft);
+
 
   return (
     <div>
@@ -33,9 +36,10 @@ export default function Countdown() {
       {hasFinished ? (
         <button
           disabled
-          className={styles.countdownButton}
+          className={`${styles.countdownButton} ${styles.countdownButtonDone}`}
         >
           Ciclo encerrado
+          <FaCheckCircle size={20} color="#4CD62B" />
         </button>
       ) : (
           <>
